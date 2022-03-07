@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import WalletConnect from "@walletconnect/client";
+import QRCodeModal from "algorand-walletconnect-qrcode-modal";
+import algosdk from "algosdk";
+import { formatJsonRpcRequest } from "@json-rpc-tools/utils";
 
-function App() {
+const App = () => {
+
+  const add = () => {
+    
+  }
+    const deduct = () => {
+    
+  }
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className = "mainContainer">
+      <div className = "dataContainer">
+        <div className="header">
+        🤪 Yooooo!
+        </div>
+        <div className="bio">
+        Antony here.  I'm happy you made it this far! You're well on your way to creating your first dapp on Algorand! 
+        </div>
+        <button className="mathButton" onClick={add}>
+          Add
+        </button>
+        <button className="mathButton" onClick={deduct}>
+          Deduct
+        </button>
+      </div>
     </div>
   );
 }
