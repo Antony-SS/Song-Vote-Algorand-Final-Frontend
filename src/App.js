@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "algorand-walletconnect-qrcode-modal";
-import algosdk, { signTransaction } from "algosdk";
+import algosdk from "algosdk";
 import { formatJsonRpcRequest } from "@json-rpc-tools/utils";
 
 
