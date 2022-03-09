@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 .walletButton {
@@ -16,6 +16,10 @@
   font-size: 20px;
   background-color: whitesmoke;
 }
+.walletButton:hover {
+  background: rgb(223, 223, 223);
+  color: black;
+}
 
 .dataContainer {
   display: flex;
@@ -26,7 +30,7 @@
   margin: 0px;
   padding:25px;
   border-radius: 8px;
-  background: #29344bd7
+  background: #29344bd7;
 }
 
 .waves-container {
@@ -41,14 +45,15 @@
   text-align: center;
   font-size: 40px;
   font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .bio {
   text-align: center;
   color: rgb(247, 244, 246);
   font-size: 14px;
-  margin-top: 12px;
-  margin-bottom: 16px;
+  margin-top: 5px;
+  margin-bottom: 8px;
   line-height: 1.4;
 }
 
@@ -67,37 +72,6 @@
   color: rgb(209, 209, 209)
 }
 
-.inputfield {
-  cursor: text;
-  margin-top: 8px;
-  padding: 6px;
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 18px;
-  transition: 0.5s;
-  height: 30px;
-  background: #303841;
-  border-width: 0px;
-}
-
-.wavebox {
-  background: #303841;
-  border-radius: 8px;
-  margin-top: 15px; 
-  padding: 8px;
-  color: whitesmoke;
-  font-size: 14px;
-}
-
-.songtext {
-  width: min-content;
-  text-emphasis: strong;
-  font-size: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  text-align: center;
-  color: whitesmoke;
-}
 
 .mathButton {
   cursor: pointer;
@@ -105,16 +79,51 @@
   padding: 8px;
   border: 0;
   border-radius: 5px;
+  margin-bottom: 16px;
+  width: 70%;
+  background-color: #df5e48;
+  color: whitesmoke;
+  font-size: 18px;
 }
 
-.count {
-  font-size: 18px;
+.mathButton:hover {
+  background: #c5513c;
+  color: whitesmoke;
+}
+
+.disconnectwalletButton {
+  cursor: pointer;
+  margin-top: 8px;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  background-color: whitesmoke;
+  margin-left: 12px;
+  margin-right: 12px;
+  text-align: center;
+}
+.disconnectwalletButton:hover {
+  background: rgb(223, 223, 223);
+  color: black;
+}
+
+.title {
+  font-size: 22px;
   margin-top: 12px;
   margin-bottom: 12px;
   color: white;
   text-align: center;
-  max-width: 200px;
+}
 
+.count {
+  color: whitesmoke;
+  font-size: 50px;
+  border-radius: 8px;
+  width: 35%;
+  text-align: center;
+  position: relative;
 }
 
 .songs-container {
@@ -125,4 +134,34 @@
   flex-direction: column;
   width: 100%;
   justify-content: center;
+  text-align: center;
+  padding: 12px;
+}
+
+.song-card {
+  max-width: 300px;
+  text-align: center;
+  padding: 4px;
+  background-color: #1d2535f8;
+  border-radius: 8px;
+  justify-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #df5e48;
+}
+
+.faucetlink {
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 8px;
+  background: #df5e48;
+  border-radius: 8px;
+  color: whitesmoke;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 12px;
+  margin-right: 12px;
+  text-decoration: underline #df5e48;
 }

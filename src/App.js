@@ -12,6 +12,8 @@ dotenv.config();
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState();
+  const [voteState1, setVoteState1] = useState("Vote");
+  const [voteState2, setVoteState2] = useState("Vote");
   const [Count1, setCount1] = useState(0);
   const [Count2, setCount2] = useState(0);
   const [walletbalance, setwalletbalance] = useState();
@@ -22,7 +24,7 @@ const App = () => {
   const baseServer = 'https://testnet-algorand.api.purestake.io/ps2'
     const port = '';
     const token = {
-        'X-API-Key': process.env.REACT_APP_API_KEY
+        'X-API-Key': "ECJheQUhsH7otnvVwGQhl5buaPqr280X6clyUd1Z"
     }
     const algodClient = new algosdk.Algodv2(token, baseServer, port);
 
@@ -107,7 +109,7 @@ const App = () => {
           setConnected(true);
         }
       } catch(error) {
-        console.log("someething didn't work in creating connector", error);
+        console.log("something didn't work in creating connector", error);
       }
     }
 
@@ -130,11 +132,12 @@ const App = () => {
   const requestParams = [ txnsToSign ];
   const request = formatJsonRpcRequest("algo_signTxn", requestParams);
 
+  setVoteState1("Sign txn in wallet");
   const result = await connector.sendCustomRequest(request);
   const decodedResult = result.map(element => {
     return element ? new Uint8Array(Buffer.from(element, "base64")) : null;
   });
-    // send and await
+    setVoteState1("Processing. . .");
     await algodClient.sendRawTransaction(decodedResult).do();
     await algosdk.waitForConfirmation(algodClient, txId, 2);
     console.log("Adding to Count1")
@@ -144,6 +147,7 @@ const App = () => {
       console.log("Global State updated:",transactionResponse['global-state-delta']);
       await getCount();
       }
+    setVoteState1("Vote");
   }
     const addC2 = async () => {
       let sender = currentAccount;
@@ -164,11 +168,13 @@ const App = () => {
     const requestParams = [ txnsToSign ];
     const request = formatJsonRpcRequest("algo_signTxn", requestParams);
   
+    setVoteState2("Sign txn in wallet");
     const result = await connector.sendCustomRequest(request);
     const decodedResult = result.map(element => {
       return element ? new Uint8Array(Buffer.from(element, "base64")) : null;
     });
       // send and await
+      setVoteState2("Processing. . .");
       await algodClient.sendRawTransaction(decodedResult).do();
       await algosdk.waitForConfirmation(algodClient, txId, 2);
       let transactionResponse = await algodClient.pendingTransactionInformation(txId).do();
@@ -177,6 +183,13 @@ const App = () => {
         console.log("Global State updated:",transactionResponse['global-state-delta']);
         await getCount();
         }
+      setVoteState2("Vote");
+  }
+
+  const getBalance = async () => {
+    let accountinfo = await algodClient.accountInformation(currentAccount).do();
+    console.log("Account Balance in Algo:", algosdk.microalgosToAlgos(accountinfo.amount));
+    setwalletbalance(algosdk.microalgosToAlgos(accountinfo.amount));
   }
 
   const getCount = async () => {
@@ -192,6 +205,9 @@ const App = () => {
   useEffect(() => {
     checkIfWalletIsConnected();
     getCount();
+    setVoteState1("Vote");
+    setVoteState2("Vote");
+    getBalance();
     console.log('currentAccount:', currentAccount);
   }, [currentAccount])
 
@@ -202,38 +218,69 @@ const App = () => {
         🤪 Yooooo!
         </div>
         <div className="bio">
-        Antony here. Trying to settle a debate.  Please vote on the better song.  Ensure that your wallet is set to the testnet. You will need some test Algos to vote.  
+        Antony here, I hope you're enjoying the tutorial. I'm trying to settle a debate with friends.  Vote for the better music genre.  Ensure your wallet is set to the testnet.
         </div>
+        <div className="bio">
+        Rules: Unlimited voting, get to clicking!
+        </div>
+
+      
         {!currentAccount && (
-          <button className="mathButton" onClick={connectWallet}>
+          <button className="walletButton" onClick={connectWallet}>
             Connect Wallet
           </button>
         )} 
+        
         {currentAccount && (
-        <>
+            <>
+              {walletbalance <= 0.01 && (
+                <>
+                  <div className="bio" >
+                    You don't have enough testalgo in your wallet to vote.  Follow the link below to the test Algo faucet, fund your account, then reload this page!
+                  </div>
+                  <a href="https://bank.testnet.algorand.network/" target="_blank">
+                    <div className="faucetlink">
+                      Test Algo Faucet
+                    </div>
+                  </a>
+                </>
+              )}
+          {walletbalance > 0.01 && (
+            <>
         <div className='songs-container'>
-        <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-</div>
+          <div className='row align-items-center'>
+            <div className='col'>
+
+              <div className='song-card'>
+                <div className = "title">
+                  EDM
+                </div>
+                <div className='count'>
+                  {Count1}
+                </div> 
+                <button className="mathButton" onClick={addC1}>
+                  {voteState1}
+                </button>
+              </div>
+            </div>
+            <div className='col align-itmes-center'>
+              <div className='song-card'>
+                <div className = "title">
+                  Country
+                </div>
+                <div className='count'>
+                  {Count2}
+                </div>
+                <button className="mathButton" onClick={addC2}>
+                  {voteState2}
+                </button>
+              </div>
+            </div>
+            </div>
         </div>
-        <button className="mathButton" onClick={disconnectWallet}>
+        </>
+        )}
+        <button className="disconnectwalletButton" onClick={disconnectWallet}>
           Disconnect Wallet
         </button>
         </>
