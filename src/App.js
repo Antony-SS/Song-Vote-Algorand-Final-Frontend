@@ -202,7 +202,7 @@ const App = () => {
         🤪 Yooooo!
         </div>
         <div className="bio">
-        Antony here. Trying to settle a debate.  Vote on the better song.
+        Antony here. Trying to settle a debate.  Please vote on the better song.  Ensure that your wallet is set to the testnet. You will need some test Algos to vote.  
         </div>
         {!currentAccount && (
           <button className="mathButton" onClick={connectWallet}>
@@ -211,18 +211,28 @@ const App = () => {
         )} 
         {currentAccount && (
         <>
-          <div className = "count">
-           Mr. Brightside: {Count1}
+        <div className='songs-container'>
+        <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
-        <div className = "count">
-          Pursuit of Happiness: {Count2}
-        </div>
-        <button className="mathButton" onClick={addC1}>
-          Vote for Mr. Brightside
-        </button>
-        <button className="mathButton" onClick={addC2}>
-          Vote for Pursuit of Happiness
-        </button>
         <button className="mathButton" onClick={disconnectWallet}>
           Disconnect Wallet
         </button>

@@ -26,7 +26,7 @@
   margin: 0px;
   padding:25px;
   border-radius: 8px;
-  background: rgba(33, 11, 39, 0.808)
+  background: #29344bd7
 }
 
 .waves-container {
@@ -37,7 +37,7 @@
 }
 
 .header {
-  color: rgb(197, 55, 155);
+  color: #df5e48;
   text-align: center;
   font-size: 40px;
   font-weight: 600;
@@ -90,6 +90,7 @@
 }
 
 .songtext {
+  width: min-content;
   text-emphasis: strong;
   font-size: 20px;
   margin-top: 0px;
@@ -107,9 +108,21 @@
 }
 
 .count {
-  font-size: 24px;
+  font-size: 18px;
   margin-top: 12px;
   margin-bottom: 12px;
-  color: black;
+  color: white;
   text-align: center;
+  max-width: 200px;
+
+}
+
+.songs-container {
+  margin-top: 10px;
+  min-height: 150px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
 }
