@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Song Share",
+  "name": "Song Share on Algorand",
   "icons": [
     {
       "src": "favicon.ico",
