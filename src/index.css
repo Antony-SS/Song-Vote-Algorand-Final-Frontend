@@ -1,4 +1,11 @@
 body {
+  background: url('./jack-b-SxhNnU46jAc-unsplash.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height:100vh;
+  padding: 0;
+  margin: 0;
+  overflow-y: hidden;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
